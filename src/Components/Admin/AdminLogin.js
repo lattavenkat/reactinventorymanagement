@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+//  import { useHistory } from "react-router-dom";
 import AdErrorMessage from "./AdErrorMessage";
 import "./Adminlogindes.css";
-import axios from "axios";
+ import axios from "axios";
 
 export default function AdminLogin() {
   const initialValues = {
     uname: "",
-    pass: "",
+    pass: ""
   };
 
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
-  const history = useHistory();
+//    const history = useHistory();
   const [submitted, setSubmitted] = useState(false);
 
   const [apiValues, setApiValues] = useState({});
 
-  useEffect(() => {
+   useEffect(() => {
+   
     axios.get("http://localhost:8000/admin")
     .then((x) => {
       console.warn("form api data", x);
       setApiValues(x.data);
-    })
-    .catch(err => {
-      console.log(err)
-  })
-  }, [])
+    });
+    
+   }, [])
 
   //onformsubmit
   const handleDoSubmit = (e1) => {
@@ -52,9 +51,9 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (submitted) {
-      history.push('/AdminDashboard');
+    //    history.push('/AdminDashboard');
     }
-  }, [submitted])
+  }, [submitted]);
 
   const validate = (values) => {
     let errors = {};
@@ -77,16 +76,16 @@ export default function AdminLogin() {
         setSubmitted(true);
       } else {
         console.warn("Please check user name aned password!");
-        history.push("/");
+        // history.push("/");
       }
     }
     return errors;
   };
-  
+
   return (
     <div className="adminloginbody">
-      <h1>adminpage</h1>
-      <form class="manlogdes" onSubmit={handleDoSubmit} noValidate>
+       <h1>adminpage</h1>
+      <form class="adminlogdes" onSubmit={handleDoSubmit} noValidate>
         <div class="ad-control">
           <h1 className="ad-h1">LOGIN</h1>
         </div>
@@ -121,7 +120,7 @@ export default function AdminLogin() {
             </div>
           )}
         </div>
-      </form>
+      </form> 
     </div>
   );
 }
