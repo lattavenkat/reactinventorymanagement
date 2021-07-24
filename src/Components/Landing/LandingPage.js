@@ -25,8 +25,7 @@ export default function LandingPage() {
                 <Link  to="/vendorlogin"  className="navlnk">Vendor</Link>
               </li>             
             </ul>
-            {/* <div onClick={handleClick}></div> */}
-          </nav>
+               </nav>
 
           <div class="bannerText">
             <h2>INVENTORY MANAGEMENT </h2>
@@ -38,11 +37,11 @@ export default function LandingPage() {
               Including inventory trends, stock on orderand supplier on-time
               performce.
             </p>
-            <a href="/">Read More</a>
+           
           </div>
         </section>
 
-        <img src="images/bg2.png" class="myimg" width="460" height="345"/> 
+        {/* <img src="images/bg2.png" class="myimg" width="460" height="345"/>  */}
         </div>
     </div>
     

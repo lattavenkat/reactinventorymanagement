@@ -1,32 +1,39 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import AdErrorMessage from "./AdErrorMessage";
+import "./Adminlogindes.css";
+import axios from "axios";
 
 export default function AdminLogin() {
   const initialValues = {
     uname: "",
     pass: "",
   };
-  
 
-    // const history = useHistory();
-    // const[user,setUser] = useState({
-    //   username:'',
-    //   password:''
-    // })
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setformErrors] = useState({});
+  const history = useHistory();
   const [submitted, setSubmitted] = useState(false);
+
+  const [apiValues, setApiValues] = useState({});
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/admin")
+    .then((x) => {
+      console.warn("form api data", x);
+      setApiValues(x.data);
+    })
+    .catch(err => {
+      console.log(err)
+  })
+  }, [])
 
   //onformsubmit
   const handleDoSubmit = (e1) => {
     e1.preventDefault();
     setformErrors(validate(formValues));
-
     console.log("===" + Object.entries(formErrors).length);
-
-    setSubmitted(true);
-    // console.log("Form has been Submitted sucessfully ");
+    // setSubmitted(true);
   };
   //onchangeevent
   const handleOnChange = (e2) => {
@@ -42,45 +49,48 @@ export default function AdminLogin() {
       };
     });
   };
-  // 
-//   const handleClick=()=> {
-//     if(user.uname =="latha" && user.pass == "pass")
-//     {
-//      history.push("/AdminDashboard");
-//     }
-//     else{
-//       alert("Invalid Password");
-//     }
-     
-//  }
-  //form validation
+
+  useEffect(() => {
+    if (submitted) {
+      history.push('/AdminDashboard');
+    }
+  }, [submitted])
 
   const validate = (values) => {
-    
     let errors = {};
     console.log(values);
     const onlystr = /^[a-zA-Z]+$/;
 
     if (!values.uname) {
       errors.uname = "*User Name cannot be empty";
-     
     } else if (!onlystr.test(values.uname)) {
       errors.uname = "*Only alphabets are Permitted";
     }
     if (!values.pass) {
       errors.pass = "Required";
     }
-    
+    if (Object.keys(errors).length === 0) {
+      if (
+        apiValues[0].uname === formValues.uname &&
+        apiValues[0].pass === formValues.pass
+      ) {
+        setSubmitted(true);
+      } else {
+        console.warn("Please check user name aned password!");
+        history.push("/");
+      }
+    }
     return errors;
   };
+  
   return (
     <div className="adminloginbody">
       <h1>adminpage</h1>
-      <form class="loginform" onSubmit={handleDoSubmit} noValidate>
+      <form class="manlogdes" onSubmit={handleDoSubmit} noValidate>
         <div class="ad-control">
           <h1 className="ad-h1">LOGIN</h1>
         </div>
-        <div class="ad-control block-cube block-input">
+        <div>
           <input
             type="text"
             name="uname"
@@ -90,17 +100,8 @@ export default function AdminLogin() {
             onChange={handleOnChange}
           />
           <AdErrorMessage message={formErrors.uname} />
-          <div class="adbg-top">
-            <div class="bg-inner"></div>
-          </div>
-          <div class="bg-right">
-            <div class="bg-inner"></div>
-          </div>
-          <div class="bg">
-            <div class="bg-inner"></div>
-          </div>
         </div>
-        <div class="control block-cube block-input">
+        <div>
           <input
             type="password"
             name="pass"
@@ -109,26 +110,8 @@ export default function AdminLogin() {
             onChange={handleOnChange}
           />
           <AdErrorMessage message={formErrors.pass} />
-          <div class="bg-top">
-            <div class="bg-inner"></div>
-          </div>
-          <div class="bg-right">
-            <div class="bg-inner"></div>
-          </div>
-          <div class="bg">
-            <div class="bg-inner"></div>
-          </div>
         </div>
-        <button class="btn block-cube block-cube-hover" type="submit"  >
-          <div class="bg-top">
-            <div class="bg-inner"></div>
-          </div>
-          <div class="bg-right">
-            <div class="bg-inner"></div>
-          </div>
-          <div class="bg">
-            <div class="bg-inner"></div>
-          </div>
+        <button type="submit">
           <div class="text">Log In</div>
         </button>
         <div>

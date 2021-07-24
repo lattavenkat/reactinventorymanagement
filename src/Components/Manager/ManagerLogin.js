@@ -60,7 +60,7 @@ export default function ManagerLogin() {
   return (
     <div >
       <h1>Manager Login</h1>
-      <form onSubmit={handleDoSubmit} noValidate>
+      <form class="adminlogdes" onSubmit={handleDoSubmit} noValidate>
         
           <input
             type="text"

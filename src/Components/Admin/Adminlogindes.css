@@ -1,136 +1,123 @@
-*, ::after, ::before {
-    box-sizing: border-box;
+/* body {
+  background-color: #f45b69;
+  font-family: "Asap", sans-serif;
+} */
+
+.adminlogdes {
+  overflow: hidden;
+  background-color: white;
+  padding: 40px 30px 30px 30px;
+  border-radius: 10px;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  width: 400px;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: -webkit-transform 300ms, box-shadow 300ms;
+  -moz-transition: -moz-transform 300ms, box-shadow 300ms;
+  transition: transform 300ms, box-shadow 300ms;
+  box-shadow: 5px 10px 10px rgba(240, 104, 13, 0.938);
+}
+.adminlogdes::before, .adminlogdes::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-top-left-radius: 40%;
+  border-top-right-radius: 45%;
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 40%;
+  z-index: -1;
+}
+.adminlogdes::before {
+  left: 40%;
+  bottom: -130%;
+  background-color: rgba(224, 96, 22, 0.541);
+  -webkit-animation: wawes 6s infinite linear;
+  -moz-animation: wawes 6s infinite linear;
+  animation: wawes 6s infinite linear;
+}
+.adminlogdes::after {
+  left: 35%;
+  bottom: -125%;
+  background-color: rgba(235, 113, 14, 0.63);
+  -webkit-animation: wawes 7s infinite;
+  -moz-animation: wawes 7s infinite;
+  animation: wawes 7s infinite;
+}
+.adminlogdes > input {
+  font-family: "Asap", sans-serif;
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background: white;
+  width: 100%;
+  border: 0;
+  padding: 10px 10px;
+  margin: 15px -10px;
+}
+.adminlogdes > button {
+  font-family: "Asap", sans-serif;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 80px;
+  border: 0;
+  padding: 10px 0;
+  margin-top: 10px;
+  margin-left: -5px;
+  border-radius: 5px;
+  background-color: #f45b69;
+  -webkit-transition: background-color 300ms;
+  -moz-transition: background-color 300ms;
+  transition: background-color 300ms;
+}
+.adminlogdes > button:hover {
+  background-color: #f24353;
+}
+
+@-webkit-keyframes wawes {
+  from {
+    -webkit-transform: rotate(0);
   }
-  
-  .adminloginbody {
-    background-color: #212121;
-    color: #fff;
-    font-family: monospace, serif;
-    letter-spacing: 0.05em;
+  to {
+    -webkit-transform: rotate(360deg);
   }
-  
-  .ad-h1 {
-    font-size: 23px;
+}
+@-moz-keyframes wawes {
+  from {
+    -moz-transform: rotate(0);
   }
-  
-  .loginform {
-    width: 300px;
-    padding: 64px 15px 24px;
-    margin: 0 auto;
+  to {
+    -moz-transform: rotate(360deg);
   }
-  .loginform .ad-control {
-    margin: 0 0 24px;
+}
+@keyframes wawes {
+  from {
+    -webkit-transform: rotate(0);
+    -moz-transform: rotate(0);
+    -ms-transform: rotate(0);
+    -o-transform: rotate(0);
+    transform: rotate(0);
   }
-  .loginform .ad-control input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    font-family: monospace, serif;
-    letter-spacing: 0.05em;
-    font-size: 16px;
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  .loginform .ad-control input:hover, .loginform .ad-control input:focus {
-    outline: none;
-    border: 0;
-  }
-  .loginform .btn {
-    width: 100%;
-    display: block;
-    padding: 14px 16px;
-    background: transparent;
-    outline: none;
-    border: 0;
-    color: #fff;
-    letter-spacing: 0.1em;
-    font-weight: bold;
-    font-family: monospace;
-    font-size: 16px;
-  }
-  
-  .block-cube {
-    position: relative;
-  }
-  .block-cube .adbg-top {
-    position: absolute;
-    height: 10px;
-    background: #020024;
-    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
-    bottom: 100%;
-    left: 5px;
-    right: -5px;
-    transform: skew(-45deg, 0);
-    margin: 0;
-  }
-  .block-cube .adbg-top .bg-inner {
-    bottom: 0;
-  }
-  .block-cube .bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: #020024;
-    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
-  }
-  .block-cube .bg-right {
-    position: absolute;
-    background: #020024;
-    background: #00d4ff;
-    top: -5px;
-    z-index: 0;
-    bottom: 5px;
-    width: 10px;
-    left: 100%;
-    transform: skew(0, -45deg);
-  }
-  .block-cube .bg-right .bg-inner {
-    left: 0;
-  }
-  .block-cube .bg .bg-inner {
-    transition: all 0.2s ease-in-out;
-  }
-  .block-cube .bg-inner {
-    background: #212121;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-  }
-  .block-cube .text {
-    position: relative;
-    z-index: 2;
-  }
-  .block-cube.block-input input {
-    position: relative;
-    z-index: 2;
-  }
-  .block-cube.block-input input:focus ~ .bg-right .bg-inner, .block-cube.block-input input:focus ~ .bg-top .bg-inner, .block-cube.block-input input:focus ~ .bg-inner .bg-inner {
-    top: 100%;
-    background: rgba(255, 255, 255, 0.5);
-  }
-  .block-cube.block-input .bg-top,
-  .block-cube.block-input .bg-right,
-  .block-cube.block-input .bg {
-    background: rgba(255, 255, 255, 0.5);
-    /* transition: background 0.2s ease-in-out; */
-transition: 0.2s ease-in-out;
-  }
-  .block-cube.block-input .bg-right .bg-inner,
-  .block-cube.block-input .bg-top .bg-inner {
-    transition: all 0.2s ease-in-out;
-  }
-  .block-cube.block-input:focus .bg-top,
-  .block-cube.block-input:focus .bg-right,
-  .block-cube.block-input:focus .bg, .block-cube.block-input:hover .bg-top,
-  .block-cube.block-input:hover .bg-right,
-  .block-cube.block-input:hover .bg {
-    background: rgba(255, 255, 255, 0.8);
-  }
-  .block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
-    top: 100%;
-  }
-  
+}
+a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
+}
